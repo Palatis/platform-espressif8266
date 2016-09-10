@@ -72,7 +72,8 @@ env.Replace(
         "-Wno-implicit-function-declaration",
         "-Wl,-EL",
         "-fno-inline-functions",
-        "-nostdlib"
+        "-nostdlib",
+        "-MMD"
     ],
 
     CCFLAGS=[
@@ -102,6 +103,8 @@ env.Replace(
         "-nostdlib",
         "-Wl,--no-check-sections",
         "-u", "call_user_start",
+        "-u", "_printf_float",
+        "-u", "_scanf_float",
         "-Wl,-static",
         "-Wl,--gc-sections"
     ],
@@ -218,7 +221,7 @@ if "PIOFRAMEWORK" in env:
     env.Append(
         LINKFLAGS=[
             "-Wl,-wrap,system_restart_local",
-            "-Wl,-wrap,register_chipv6_phy"
+            "-Wl,-wrap,spi_flash_read"
         ],
 
         BUILDERS=dict(

@@ -21,6 +21,7 @@ EXTERN(_DoubleExceptionVector)
 EXTERN(_KernelExceptionVector)
 EXTERN(_NMIExceptionVector)
 EXTERN(_UserExceptionVector)
+EXTERN(core_version)
 PROVIDE(_memmap_vecbase_reset = 0x40000000);
 /* Various memory-map dependent cache attribute settings: */
 _memmap_cacheattr_wb_base = 0x00000110;
@@ -168,6 +169,7 @@ SECTIONS
     EXCLUDE_FILE (umm_malloc.o) .text*)
     *.pioenvs/*/src/*.o(EXCLUDE_FILE (umm_malloc.o) .literal*, \
     EXCLUDE_FILE (umm_malloc.o) .text*)
+    *libc.a:(.literal .text .literal.* .text.*)
     *libm.a:(.literal .text .literal.* .text.*)
     *libgcc.a:_umoddi3.o(.literal .text)
     *libgcc.a:_udivdi3.o(.literal .text)
@@ -254,6 +256,7 @@ PROVIDE ( SPI_read_status = 0x400043c8 );
 PROVIDE ( SPI_write_status = 0x40004400 );
 PROVIDE ( SPI_write_enable = 0x4000443c );
 PROVIDE ( Wait_SPI_Idle = 0x4000448c );
+PROVIDE ( Enable_QMode = 0x400044c0 );
 PROVIDE ( SPIEraseArea = 0x40004b44 );
 PROVIDE ( SPIEraseBlock = 0x400049b4 );
 PROVIDE ( SPIEraseChip = 0x40004984 );

@@ -40,15 +40,19 @@ env.Prepend(
         "LWIP_OPEN_SRC"
     ],
     CPPPATH=[
+        join(FRAMEWORK_DIR, "tools", "sdk", "libc", "xtensa-lx106-elf", "include"),
         join(FRAMEWORK_DIR, "tools", "sdk", "include"),
         join(FRAMEWORK_DIR, "tools", "sdk", "lwip", "include"),
         join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"))
     ],
-    LIBPATH=[join(FRAMEWORK_DIR, "tools", "sdk", "lib")],
+    LIBPATH=[
+        join(FRAMEWORK_DIR, "tools", "sdk", "libc", "xtensa-lx106-elf", "lib"),
+        join(FRAMEWORK_DIR, "tools", "sdk", "lib")
+    ],
     LIBS=[
         "mesh", "wpa2", "smartconfig", "pp", "main", "wpa", "lwip_gcc",
         "net80211", "wps", "crypto", "phy", "hal", "axtls", "gcc",
-        "m", "stdc++"
+        "c", "m", "stdc++", "espnow"
     ]
 )
 
